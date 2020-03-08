@@ -1,7 +1,0 @@
-name: Rapda_Welcome
-main: rapda.Main
-version: "0.0.3"
-api: ["1.0.0"]
-load: POSTWORLD
-description: 拉普达云上进服欢迎插件
-autehor: 半藏
