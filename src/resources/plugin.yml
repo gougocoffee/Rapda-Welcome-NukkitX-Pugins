@@ -1,5 +1,5 @@
 name: Rapda_Welcome
-main: rapda.Main
+main: rapda.Welcome
 version: "0.0.3"
 api: ["1.0.0"]
 load: POSTWORLD
