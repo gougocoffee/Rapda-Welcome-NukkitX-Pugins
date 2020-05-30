@@ -16,15 +16,17 @@ public class Welcome extends PluginBase implements Listener{
 
 	@Override
 	public void onEnable() {
+		saveResource("支持变量.txt");
 		saveDefaultConfig();
 		this.config = getConfig();
 		getServer().getPluginManager().registerEvents(this, this);
 		getLogger().info(TextFormat.BLUE + "§e拉普达欢迎插件已经启动了");
+		Server.getInstance().getLogger().info("[Rapda_Welcome] §a盗版转载此插件没爹没妈，§b请认证作者是§e半藏§fQQ：2934731631");
 	}
 
 	@Override
 	public void onDisable() {
-		getLogger().info(getName() + "已卸载");
+		getLogger().info(getName() + "§e拉普达欢迎插件已经关闭了");
 	}
 
 	@EventHandler
@@ -33,12 +35,18 @@ public class Welcome extends PluginBase implements Listener{
 		getServer().getScheduler().scheduleDelayedTask(this, new Task() {
 			@Override
 			public void onRun(int i) {
-				player.sendTitle(config.get("主标题","§6《拉普达》"),
-						config.get("副标题","§a欢迎你的到来"),
+				player.sendTitle(
+						config.get("主标题","§6《拉普达》"),
+						config.get("副标题","§a欢迎你的到来")
+						.replace("%玩家名字%", player.getName())
+						.replace("%换行% ", "\n"),
 						config.get("渐入时间",20),
 						config.get("显示时间",40),
 						config.get("淡出时间",20));
+				player.sendMessage(config.getString("进服消息","§a欢迎你的到来")
+						.replace("%换行% ", "\n")
+						.replace("%玩家名字%", player.getName()));
 			}
-		}, this.config.get("延迟",100));
+		}, this.config.get("延迟",300));
 	}
 }
